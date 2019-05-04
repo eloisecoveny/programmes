@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Table from "./containers/Table";
 
-function App() {
+export default function App(){
+
+  const [programmes, setProgrammes] = useState(["null"])
+
+   const getProgrammes = () => {
+    fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
+    .then(res => res.json())
+    .then(prog => setProgrammes(prog.results))
+    setTimeout(() => {
+      console.log(programmes)
+    }, 250);
+  }
+
+  useEffect(() => {
+    getProgrammes()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <p>App</p>
+    <Table programmes={programmes}/>
+    </>
+  )
 }
-
-export default App;
