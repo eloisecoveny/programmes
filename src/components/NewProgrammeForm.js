@@ -1,4 +1,5 @@
 import React from "react";
+import "./Input.css";
 
 class NewProgrammeForm extends React.Component {
   constructor(props){
@@ -32,20 +33,23 @@ class NewProgrammeForm extends React.Component {
 
   render(){
     return (
-      <form className="new-prog-form" onSubmit={this.handleSubmit}>
-        <input
-        type="text"
-        placeholder="Programme name"
-        value={this.state.name} onChange={this.handleNameChange}
-        />
-        <input
-        type="text"
-        placeholder="Description"
-        value={this.state.description}
-        onChange={this.handleDescriptionChange}
-        />
-        <input type="submit" value="Post" />
-      </form>
+      <>
+        <label>Add programme: </label>
+        <form className="new-prog-form" onSubmit={this.handleSubmit}>
+          <input
+          type="text"
+          placeholder="Programme name"
+          value={this.state.name} onChange={this.handleNameChange}
+          />
+          <input
+          type="text"
+          placeholder="Description"
+          value={this.state.description}
+          onChange={this.handleDescriptionChange}
+          />
+          <input type="submit" value="Post" />
+        </form>
+      </>
     )
   }
 }

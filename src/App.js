@@ -2,6 +2,7 @@ import React from 'react';
 import Table from "./containers/Table";
 import Search from "./components/Search";
 import NewProgrammeForm from "./components/NewProgrammeForm";
+import "./App.css";
 
 class App extends React.Component{
   constructor(props){
@@ -43,7 +44,6 @@ class App extends React.Component{
   }
 
   newProgramme(name, description){
-    console.log(name);
     let ids = this.state.updatedDepo.map(prog => prog.id)
     let maxId = Math.max(...ids)
     let newProgramme = {
@@ -54,7 +54,6 @@ class App extends React.Component{
     }
     let updated = [...this.state.updatedDepo]
     updated.push(newProgramme)
-    console.log(updated);
     this.setState({updatedDepo: updated, filteredResults: [...updated]})
   }
 
@@ -64,12 +63,16 @@ class App extends React.Component{
 
   render(){
     return(
-      <>
-      <h1>Programmes</h1>
-      <Search programmes={this.state.updatedDepo} handleFilter={this.handleFilter} />
-      <NewProgrammeForm newProgramme={this.newProgramme}/>
-      <Table programmes={this.state.filteredResults} handleDelete={this.handleDelete}/>
-      </>
+      <div className="app-wrapper">
+        <h1>Programmes</h1>
+        <div className="input-wrapper">
+          <Search programmes={this.state.updatedDepo} handleFilter={this.handleFilter} />
+        </div>
+        <div className="input-wrapper">
+          <NewProgrammeForm newProgramme={this.newProgramme}/>
+        </div>
+        <Table programmes={this.state.filteredResults} handleDelete={this.handleDelete}/>
+      </div>
     )
   }
 }

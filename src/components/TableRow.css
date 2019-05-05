@@ -4,7 +4,7 @@
 }
 
 .inactive .cell {
-  background-color: lightgrey;
+  background-color: #9ea0a3;
 }
 
 .cell {
@@ -15,6 +15,7 @@
 
 .header {
   background-color: #d9e6fc;
+  font-weight: bold;
 }
 
 .id {
@@ -29,7 +30,16 @@
   width: 500px;
 }
 
+.activity {
+  width: 60px;
+}
+
 .button {
-  height: 20px;
-  width: 20px;
+  width: 55px;
+  height: inherit;
+  align-self: center;
+}
+
+p {
+  margin: 7px;
 }

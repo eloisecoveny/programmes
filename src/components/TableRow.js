@@ -19,6 +19,9 @@ const TableRow = (props) => {
       <div className="description cell">
         <p>{props.programme.shortDescription}</p>
       </div>
+      <div className="activity cell">
+        <p>{props.programme.active ? 'true' : 'false'}</p>
+      </div>
       <div className="button cell">
         <button onClick={handleClick}>x</button>
       </div>
