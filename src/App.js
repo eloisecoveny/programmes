@@ -28,7 +28,7 @@ class App extends React.Component{
     });
   }
 
-  // Filter search results based on use input
+  // Filter search results based on user input
   handleFilter(input){
     let filtered = [...this.state.updatedDepo].filter(prog => {
       return prog.name.toLowerCase().includes(input.toLowerCase())
