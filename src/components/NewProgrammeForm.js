@@ -6,10 +6,12 @@ class NewProgrammeForm extends React.Component {
     super(props);
     this.state = {
       name: "",
-      description: ""
+      description: "",
+      active: false
     }
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
+    this.handleActiveSelect = this.handleActiveSelect.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -23,16 +25,22 @@ class NewProgrammeForm extends React.Component {
     this.setState({description: event.target.value})
   }
 
+  // Update user selection active
+  handleActiveSelect(event){
+    this.setState({active: event.target.value})
+  }
+
   // Handle the saving of a new programme to the local depository
   handleSubmit(event){
     event.preventDefault()
     const name = this.state.name.trim()
     const description = this.state.description.trim()
+    const active = this.state.active
     if(!name || !description) return;
 
-    this.props.newProgramme(name, description)
+    this.props.newProgramme(name, description, active)
     // Reset the state
-    this.setState({description: "", name: ""})
+    this.setState({description: "", name: "", active: false})
   }
 
   render(){
@@ -51,6 +59,10 @@ class NewProgrammeForm extends React.Component {
           value={this.state.description}
           onChange={this.handleDescriptionChange}
           />
+          <select value={this.state.active} onChange={this.handleActiveSelect}>
+            <option value="false">False</option>
+            <option value="true">True</option>
+          </select>
           <input type="submit" value="Post" />
         </form>
       </>
