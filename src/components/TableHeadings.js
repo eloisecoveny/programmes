@@ -3,10 +3,12 @@ import "./TableRow.css";
 
 const TableHeadings = (props) => {
 
+  // Handle the sorting when "id" is selected
   const handleIdSort = () => {
     props.handleSort("id")
   }
 
+  // Handle the sorting when "name" is selected
   const handleNameSort = () => {
     props.handleSort("name")
   }

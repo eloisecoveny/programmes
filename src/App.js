@@ -19,6 +19,7 @@ class App extends React.Component{
     this.handleSort = this.handleSort.bind(this)
   }
 
+  // Fetch programmes from the API
   getProgrammes(){
     fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
     .then(res => res.json())
@@ -27,6 +28,7 @@ class App extends React.Component{
     });
   }
 
+  // Filter search results based on use input
   handleFilter(input){
     let filtered = [...this.state.updatedDepo].filter(prog => {
       return prog.name.toLowerCase().includes(input.toLowerCase())
@@ -34,6 +36,7 @@ class App extends React.Component{
     this.setState({filteredResults: filtered})
   }
 
+  // Remove programme from the local depository to remove it from the table
   handleDelete(id){
     let found = this.state.updatedDepo.find(prog => {
       return prog.id === id
@@ -44,6 +47,7 @@ class App extends React.Component{
     this.setState({updatedDepo: updated, filteredResults: [...this.state.updatedDepo]})
   }
 
+  // Sort the order of programmes based on either id or name
   handleSort(type){
     let sortedList = []
     if(type === "id"){
@@ -56,6 +60,7 @@ class App extends React.Component{
     }
   }
 
+  // Add a new programme to the local depository so it can be added to the table
   newProgramme(name, description){
     let ids = this.state.updatedDepo.map(prog => prog.id)
     let maxId = Math.max(...ids)
@@ -70,6 +75,7 @@ class App extends React.Component{
     this.setState({updatedDepo: updated, filteredResults: [...updated]})
   }
 
+  // Fetch the programmes when the component mounts
   componentDidMount(){
     this.getProgrammes()
   }

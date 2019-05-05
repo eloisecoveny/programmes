@@ -3,6 +3,7 @@ import "./TableRow.css";
 
 const TableRow = (props) => {
 
+  // Handle the deletion of a programme
   const handleClick = () => {
     props.handleDelete(props.programme.id)
   }

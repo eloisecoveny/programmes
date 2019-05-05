@@ -5,6 +5,7 @@ import "./Table.css";
 
 const Table = (props) => {
 
+  // Generate a table row for each programme
   const rows = props.programmes.map((programme, index) => {
       return <TableRow programme={programme} handleDelete={props.handleDelete} key={index}></TableRow>
     })

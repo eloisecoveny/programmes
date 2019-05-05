@@ -13,14 +13,17 @@ class NewProgrammeForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  // Dynamically update user input field name
   handleNameChange(event){
     this.setState({name: event.target.value})
   }
 
+  // Dynamically update user input field description
   handleDescriptionChange(event){
     this.setState({description: event.target.value})
   }
 
+  // Handle the saving of a new programme to the local depository
   handleSubmit(event){
     event.preventDefault()
     const name = this.state.name.trim()
@@ -28,6 +31,7 @@ class NewProgrammeForm extends React.Component {
     if(!name || !description) return;
 
     this.props.newProgramme(name, description)
+    // Reset the state
     this.setState({description: "", name: ""})
   }
 
