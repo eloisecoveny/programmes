@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import TableRow from "../components/TableRow";
 
-export default function Table({ programmes }){
+const Table = (props) => {
 
-  useEffect(() => {
-    console.log(programmes);
-  }, [])
+  const rows = props.programmes.map((programme, index) => {
+      return <TableRow programme={programme} key={ index }></TableRow>
+    })
+
 
   return(
     <>
-    {programmes[0].name}
+    <div className="programme-rows">
+      {rows}
+    </div>
     </>
   )
-
 }
+export default Table;

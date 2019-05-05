@@ -1,27 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Table from "./containers/Table";
+import Search from "./components/Search";
+import NewProgrammeForm from "./components/NewProgrammeForm";
 
-export default function App(){
-
-  const [programmes, setProgrammes] = useState(["null"])
-
-   const getProgrammes = () => {
-    fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
-    .then(res => res.json())
-    .then(prog => setProgrammes(prog.results))
-    setTimeout(() => {
-      console.log(programmes)
-    }, 250);
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      programmes: []
+    }
+    this.getProgrammes = this.getProgrammes.bind(this)
   }
 
-  useEffect(() => {
-    getProgrammes()
-  }, [])
+  getProgrammes(){
+  fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
+  .then(res => res.json())
+  .then(prog => this.setState({programmes: prog.results}))
+  }
 
-  return (
-    <>
-    <p>App</p>
-    <Table programmes={programmes}/>
-    </>
-  )
+  componentDidMount(){
+    this.getProgrammes()
+  }
+
+  render(){
+    return(
+      <>
+      <Table programmes={this.state.programmes} />
+      </>
+    )
+  }
 }
+
+export default App;
