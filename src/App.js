@@ -16,6 +16,7 @@ class App extends React.Component{
     this.handleFilter = this.handleFilter.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.newProgramme = this.newProgramme.bind(this)
+    this.handleSort = this.handleSort.bind(this)
   }
 
   getProgrammes(){
@@ -41,6 +42,18 @@ class App extends React.Component{
     let updated = this.state.updatedDepo
     updated.splice(index, 1)
     this.setState({updatedDepo: updated, filteredResults: [...this.state.updatedDepo]})
+  }
+
+  handleSort(type){
+    let sortedList = []
+    if(type === "id"){
+      sortedList = this.state.filteredResults.sort((a, b) => {
+        return a.id - b.id
+      })
+      this.setState({filteredResults: sortedList})
+    } else if(type === "name"){
+      this.setState({filteredResults: [...this.state.updatedDepo]})
+    }
   }
 
   newProgramme(name, description){
@@ -71,7 +84,7 @@ class App extends React.Component{
         <div className="input-wrapper">
           <NewProgrammeForm newProgramme={this.newProgramme}/>
         </div>
-        <Table programmes={this.state.filteredResults} handleDelete={this.handleDelete}/>
+        <Table programmes={this.state.filteredResults} handleDelete={this.handleDelete} handleSort={this.handleSort}/>
       </div>
     )
   }

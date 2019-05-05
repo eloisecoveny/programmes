@@ -13,7 +13,7 @@ const Table = (props) => {
     <>
     <div className="table-wrapper">
       <div className="table-headings">
-        <TableHeadings />
+        <TableHeadings handleSort={props.handleSort}/>
       </div>
       <div className="programme-rows">
         {rows}

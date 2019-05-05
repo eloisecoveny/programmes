@@ -16,6 +16,7 @@
 .header {
   background-color: #d9e6fc;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .id {
