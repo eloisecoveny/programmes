@@ -14,13 +14,14 @@ class App extends React.Component{
     this.getProgrammes = this.getProgrammes.bind(this)
     this.handleFilter = this.handleFilter.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.newProgramme = this.newProgramme.bind(this)
   }
 
   getProgrammes(){
     fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
     .then(res => res.json())
     .then((prog) => {
-      this.setState({programmes: prog.results, updatedDepo: prog.results, filteredResults: [...prog.results]});
+      this.setState({programmes: prog.results, updatedDepo: [...prog.results], filteredResults: [...prog.results]});
     });
   }
 
@@ -41,6 +42,22 @@ class App extends React.Component{
     this.setState({updatedDepo: updated, filteredResults: [...this.state.updatedDepo]})
   }
 
+  newProgramme(name, description){
+    console.log(name);
+    let ids = this.state.updatedDepo.map(prog => prog.id)
+    let maxId = Math.max(...ids)
+    let newProgramme = {
+      "id": maxId + 1,
+      "name": name,
+      "shortDescription": description,
+      "active": true
+    }
+    let updated = [...this.state.updatedDepo]
+    updated.push(newProgramme)
+    console.log(updated);
+    this.setState({updatedDepo: updated, filteredResults: [...updated]})
+  }
+
   componentDidMount(){
     this.getProgrammes()
   }
@@ -50,6 +67,7 @@ class App extends React.Component{
       <>
       <h1>Programmes</h1>
       <Search programmes={this.state.updatedDepo} handleFilter={this.handleFilter} />
+      <NewProgrammeForm newProgramme={this.newProgramme}/>
       <Table programmes={this.state.filteredResults} handleDelete={this.handleDelete}/>
       </>
     )
