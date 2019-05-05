@@ -4,21 +4,23 @@ class Search extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      input: ""
+      text: ""
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange(evt){
-    this.setState({ input: evt.target.value })
-    this.props.handleFilter(this.state.input)
+    console.log('event value ', evt.target.value);
+    this.setState({ text: evt.target.value }, () => {
+      this.props.handleFilter(this.state.text)
+    })
   }
 
   render(){
     return (
       <>
       <p>Search</p>
-      <input type="text" value={this.state.input} onChange={this.handleChange} placeholder="search programme name"/>
+      <input type="text" value={this.state.text} onChange={this.handleChange} placeholder="search by name"/>
       </>
     )
   }
