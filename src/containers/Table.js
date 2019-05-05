@@ -6,7 +6,7 @@ import "./Table.css";
 const Table = (props) => {
 
   const rows = props.programmes.map((programme, index) => {
-      return <TableRow programme={ programme } key={ index }></TableRow>
+      return <TableRow programme={programme} handleDelete={props.handleDelete} key={index}></TableRow>
     })
 
   return(

@@ -4,7 +4,7 @@ import "./TableRow.css";
 const TableRow = (props) => {
 
   const handleClick = () => {
-    console.log(props.programme.id);
+    props.handleDelete(props.programme.id)
   }
 
   return(
