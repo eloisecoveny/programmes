@@ -7,7 +7,9 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      programmes: []
+      programmes: [],
+      filteredResults: [],
+      search: ""
     }
     this.getProgrammes = this.getProgrammes.bind(this)
   }
@@ -18,6 +20,10 @@ class App extends React.Component{
   .then(prog => this.setState({programmes: prog.results}))
   }
 
+  handleFilter(input){
+    this.setState({search: input})
+  }
+
   componentDidMount(){
     this.getProgrammes()
   }
@@ -25,6 +31,8 @@ class App extends React.Component{
   render(){
     return(
       <>
+      <h1>Programmes</h1>
+      <Search programmes={this.state.programmes} handleFilter={this.handleFilter}/>
       <Table programmes={this.state.programmes} />
       </>
     )
