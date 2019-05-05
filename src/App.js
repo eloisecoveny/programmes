@@ -15,21 +15,19 @@ class App extends React.Component{
   }
 
   getProgrammes(){
-  fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
-  .then(res => res.json())
-  .then((prog) => {
-    this.setState({programmes: prog.results})
-    this.setState({filteredResults: [...prog.results]})
-    return null;
-  })
+    fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
+    .then(res => res.json())
+    .then((prog) => {
+      this.setState({programmes: prog.results})
+      this.setState({filteredResults: [...prog.results]})
+    })
   }
 
   handleFilter(input){
-    let text = [...this.state.programmes].filter((programme) => {
-      const name = programme.name
-      return name.includes(input)
+    let filtered = [...this.state.programmes].filter((programme) => {
+      return programme.name.toLowerCase().includes(input.toLowerCase())
     })
-    this.setState({filteredResults: text})
+    this.setState({filteredResults: filtered})
   }
 
   componentDidMount(){

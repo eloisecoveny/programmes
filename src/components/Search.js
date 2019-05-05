@@ -10,7 +10,6 @@ class Search extends React.Component{
   }
 
   handleChange(evt){
-    console.log('event value ', evt.target.value);
     this.setState({ text: evt.target.value }, () => {
       this.props.handleFilter(this.state.text)
     })
