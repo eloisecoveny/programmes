@@ -7,22 +7,26 @@
   background-color: lightgrey;
 }
 
+.cell {
+  background-color: #F7F7F7;
+  border: 2px solid white;
+  padding: 5px;
+}
+
+.header {
+  background-color: #d9e6fc;
+}
+
 .id {
   width: 60px;
-  border: 0.5px solid grey;
-  padding: 5px;
 }
 
 .name {
   width: 225px;
-  border: 0.5px solid grey;
-  padding: 5px;
 }
 
 .description {
   width: 500px;
-  border: 0.5px solid grey;
-  padding: 5px;
 }
 
 .button {

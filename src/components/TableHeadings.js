@@ -5,13 +5,13 @@ const TableHeadings = () => {
 
   return(
     <div className="row-wrapper">
-    <div className="id">
+    <div className="id cell header">
       <p>id</p>
     </div>
-    <div className="name">
+    <div className="name cell header">
       <p>Name</p>
     </div>
-    <div className="description">
+    <div className="description cell header">
       <p>Description</p>
     </div>
     </div>
