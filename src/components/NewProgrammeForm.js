@@ -1,77 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import "./Input.css";
 
-class NewProgrammeForm extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      name: "",
-      description: "",
-      active: false
-    }
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
-    this.handleActiveSelect = this.handleActiveSelect.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
+export default function NewProgrammeForm({newProgramme}){
+
+  const [name, setName] = useState("")
+  const [description, setDescription] = useState("")
+  const [active, setActive] = useState(false)
 
   // Dynamically update user input field name
-  handleNameChange(event){
-    this.setState({name: event.target.value})
+  const handleNameChange = (event) => {
+    setName(event.target.value)
   }
 
   // Dynamically update user input field description
-  handleDescriptionChange(event){
-    this.setState({description: event.target.value})
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value)
   }
 
   // Update user selection active
-  handleActiveSelect(event){
-    this.setState({active: event.target.value})
+  const handleActiveSelect = (event) => {
+    setActive(event.target.value)
   }
 
   // Handle the saving of a new programme to the local depository
-  handleSubmit(event){
+  const handleSubmit = (event) => {
     event.preventDefault()
-    const name = this.state.name.trim()
-    const description = this.state.description.trim()
-    const active = this.state.active
+    const newName = name.trim()
+    const newDescription = description.trim()
+    const newActive = active
     if(!name || !description) return;
 
-    this.props.newProgramme(name, description, active)
+    newProgramme(newName, newDescription, newActive)
     // Reset the state
-    this.setState({description: "", name: "", active: false})
+    setDescription("")
+    setName("")
+    setActive(false)
   }
 
-  render(){
-    NewProgrammeForm.propTypes = {
-      newProgramme: PropTypes.func,
-    }
-
-    return (
-      <>
-        <label>Add programme: </label>
-        <form className="new-prog-form" onSubmit={this.handleSubmit}>
-          <input
-          type="text"
-          placeholder="Programme name"
-          value={this.state.name} onChange={this.handleNameChange}
-          />
-          <input
-          type="text"
-          placeholder="Description"
-          value={this.state.description}
-          onChange={this.handleDescriptionChange}
-          />
-          <select value={this.state.active} onChange={this.handleActiveSelect}>
-            <option value="false">False</option>
-            <option value="true">True</option>
-          </select>
-          <input type="submit" value="Post" />
-        </form>
-      </>
-    )
+  NewProgrammeForm.propTypes = {
+    newProgramme: PropTypes.func,
   }
+
+  return (
+    <>
+    <label>Add programme: </label>
+    <form className="new-prog-form" onSubmit={handleSubmit}>
+    <input
+    type="text"
+    placeholder="Programme name"
+    value={name} onChange={handleNameChange}
+    />
+    <input
+    type="text"
+    placeholder="Description"
+    value={description}
+    onChange={handleDescriptionChange}
+    />
+    <select value={active} onChange={handleActiveSelect}>
+    <option value="false">False</option>
+    <option value="true">True</option>
+    </select>
+    <input type="submit" value="Post" />
+    </form>
+    </>
+  )
 }
-export default NewProgrammeForm;

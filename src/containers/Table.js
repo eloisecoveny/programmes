@@ -4,12 +4,12 @@ import TableRow from "../components/TableRow";
 import TableHeadings from "../components/TableHeadings";
 import "./Table.css";
 
-const Table = ({programmes, handleDelete, handleSort}) => {
+export default function Table({programmes, handleDelete, handleSort}){
 
   // Generate a table row for each programme
   const rows = programmes.map((programme, index) => {
-      return <TableRow programme={programme} handleDelete={handleDelete} key={index}></TableRow>
-    })
+    return <TableRow programme={programme} handleDelete={handleDelete} key={index}></TableRow>
+  })
 
   Table.propTypes = {
     programmes: PropTypes.array,
@@ -30,4 +30,3 @@ const Table = ({programmes, handleDelete, handleSort}) => {
     </>
   )
 }
-export default Table;

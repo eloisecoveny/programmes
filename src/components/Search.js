@@ -1,34 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import "./Input.css";
 
-class Search extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      text: ""
-    }
-    this.handleChange = this.handleChange.bind(this)
-  }
+export default function Search({programmes, handleFilter}){
+
+  const [text, setText] = useState("")
+
+  useEffect(() => {
+    handleFilter(text)
+  }, [text])
 
   // Handle the list filtering as user input is detected
-  handleChange(evt){
-    this.setState({ text: evt.target.value }, () => {
-      this.props.handleFilter(this.state.text)
-    })
+  const handleChange = (evt) => {
+    setText(evt.target.value)
   }
 
-  render(){
-    Search.propTypes = {
-      handleFilter: PropTypes.func,
-    }
-
-    return (
-      <>
-      <label>Search: </label>
-      <input type="text" value={this.state.text} onChange={this.handleChange} placeholder="search by name"/>
-      </>
-    )
+  Search.propTypes = {
+    handleFilter: PropTypes.func,
   }
+
+  return (
+    <>
+    <label>Search: </label>
+    <input type="text" value={text} onChange={handleChange} placeholder="search by name"/>
+    </>
+  )
 }
-export default Search;

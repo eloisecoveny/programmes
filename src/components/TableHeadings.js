@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import "./TableRow.css";
 
-const TableHeadings = ({handleSort}) => {
+export default function TableHeadings({handleSort}){
 
   // Handle the sorting when "id" is selected
   const handleIdSort = () => {
@@ -38,4 +38,3 @@ const TableHeadings = ({handleSort}) => {
     </div>
   )
 }
-export default TableHeadings;
