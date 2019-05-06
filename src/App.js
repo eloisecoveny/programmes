@@ -24,7 +24,7 @@ class App extends React.Component{
     fetch(`https://gist.githubusercontent.com/simontsang/74509ec1d801e8ce8b99f6b300d38071/raw/f2830f73cb4dc7e575d1be1335e3e41fbfd1cadc/programmes.json`)
     .then(res => res.json())
     .then((prog) => {
-      // updatedDepo is a property used as a local data depository for this example as I am not mutating a DB.
+      // updatedDepo is a property used as a local data repo for this example as I am not mutating a DB.
       this.setState({programmes: prog.results, updatedDepo: [...prog.results], filteredResults: [...prog.results]});
     });
   }
