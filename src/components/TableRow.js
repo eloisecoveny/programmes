@@ -1,27 +1,33 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "./TableRow.css";
 
-const TableRow = (props) => {
+const TableRow = ({programme, handleDelete}) => {
 
   // Handle the deletion of a programme
   const handleClick = () => {
-    props.handleDelete(props.programme.id)
+    handleDelete(programme.id)
+  }
+
+  TableRow.propTypes = {
+    programme: PropTypes.object,
+    handleDelete: PropTypes.func,
   }
 
   return(
-    <div className={ props.programme.active ? 'active' : 'inactive' }>
+    <div className={ programme.active ? 'active' : 'inactive' }>
     <div className="row-wrapper">
       <div className="id cell">
-        <p>{props.programme.id}</p>
+        <p>{programme.id}</p>
       </div>
       <div className="name cell">
-        <p>{props.programme.name}</p>
+        <p>{programme.name}</p>
       </div>
       <div className="description cell">
-        <p>{props.programme.shortDescription}</p>
+        <p>{programme.shortDescription}</p>
       </div>
       <div className="activity cell">
-        <p>{props.programme.active ? 'true' : 'false'}</p>
+        <p>{programme.active ? 'true' : 'false'}</p>
       </div>
       <div className="button cell">
         <button onClick={handleClick}>x</button>

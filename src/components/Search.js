@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "./Input.css";
 
 class Search extends React.Component{
@@ -18,6 +19,10 @@ class Search extends React.Component{
   }
 
   render(){
+    Search.propTypes = {
+      handleFilter: PropTypes.func,
+    }
+
     return (
       <>
       <label>Search: </label>

@@ -1,16 +1,21 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "./TableRow.css";
 
-const TableHeadings = (props) => {
+const TableHeadings = ({handleSort}) => {
 
   // Handle the sorting when "id" is selected
   const handleIdSort = () => {
-    props.handleSort("id")
+    handleSort("id")
   }
 
   // Handle the sorting when "name" is selected
   const handleNameSort = () => {
-    props.handleSort("name")
+    handleSort("name")
+  }
+
+  TableHeadings.propTypes = {
+    handleSort: PropTypes.func,
   }
 
   return(

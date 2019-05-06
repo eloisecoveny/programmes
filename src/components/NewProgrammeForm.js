@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "./Input.css";
 
 class NewProgrammeForm extends React.Component {
@@ -44,6 +45,10 @@ class NewProgrammeForm extends React.Component {
   }
 
   render(){
+    NewProgrammeForm.propTypes = {
+      newProgramme: PropTypes.func,
+    }
+
     return (
       <>
         <label>Add programme: </label>

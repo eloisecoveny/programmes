@@ -62,7 +62,6 @@ class App extends React.Component{
 
   // Add a new programme to the local depository so it can be added to the table
   newProgramme(name, description, active){
-    console.log(active);
     let ids = this.state.updatedDepo.map(prog => prog.id)
     let maxId = Math.max(...ids)
     let newProgramme = {
